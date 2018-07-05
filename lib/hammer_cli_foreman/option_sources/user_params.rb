@@ -14,6 +14,9 @@ module HammerCLIForeman
         if @command.action == :update
           if result[option_name(:password)] || result[option_name(:ask_password)]
             if current_logged_user["id"].to_s == result[option_name(:id)].to_s
+              curr_passwd = HammerCLI::Settings.settings[:_params][:password]
+              result[option_name(:current_password)] = curr_passwd unless curr_passwd.nil?
+
               unless result[option_name(:current_password)]
                 result[option_name(:current_password)] = ask_password(:current)
               end
