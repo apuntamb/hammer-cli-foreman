@@ -23,7 +23,7 @@ describe HammerCLIForeman::Subnet do
       let(:expected_record_count) { count_records(cmd.resource.call(:index)) }
 
       it_should_print_n_records
-      it_should_print_columns  ["Id", "Name", "Network", "Mask"]
+      it_should_print_columns  ["Id", "Name", "Network Addr", "Network Mask"]
     end
 
   end
@@ -43,12 +43,13 @@ describe HammerCLIForeman::Subnet do
 
       with_params ["--name=subnet"] do
         it_should_print_n_records 1
-        it_should_print_columns ["Id", "Name", "Network", "Mask"]
+        it_should_print_columns ["Id", "Name", "Network Addr", "Network Mask"]
         it_should_print_columns ["Description"]
         it_should_print_columns ["Priority"]
+        it_should_print_columns ["Protocol"]
         it_should_print_columns ["DNS", "Primary DNS", "Secondary DNS"]
         it_should_print_columns ["Domains", "TFTP", "DHCP"]
-        it_should_print_columns ["VLAN ID", "Gateway", "From", "To"]
+        it_should_print_columns ["VLAN ID", "Gateway", "Start of IP Range", "End of IP Range"]
       end
     end
 

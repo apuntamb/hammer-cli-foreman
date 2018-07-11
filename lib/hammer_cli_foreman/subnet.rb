@@ -9,9 +9,9 @@ module HammerCLIForeman
       output do
         field :id, _("Id")
         field :name, _("Name")
-        field :network, _("Network")
+        field :network, _("Network Addr")
         field :cidr, _("CIDR")
-        field :mask, _("Mask")
+        field :mask, _("Network Mask")
         field :vlanid, _("VLAN ID")
         field :boot_mode, _("Boot Mode")
       end
@@ -24,6 +24,7 @@ module HammerCLIForeman
 
       output ListCommand.output_definition do
         field :description, _("Description"), Fields::LongText, :hide_blank => true
+        field :network_type, _("Protocol")
         field :priority, _("Priority")
         field :dns, _("DNS"), Fields::Reference, :details => :url
         field :dns_primary, _("Primary DNS")
@@ -32,8 +33,8 @@ module HammerCLIForeman
         field :dhcp, _("DHCP"), Fields::Reference, :details => :url
         field :ipam, _("IPAM")
         field :gateway, _("Gateway")
-        field :from, _("From")
-        field :to, _("To")
+        field :from, _("Start of IP Range")
+        field :to, _("End of IP Range")
         field :mtu, _("MTU")
         HammerCLIForeman::References.domains(self)
         HammerCLIForeman::References.taxonomies(self)
